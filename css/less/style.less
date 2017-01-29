@@ -6,8 +6,15 @@
 
 
 body {
-    font-family: @roboto;
     font-size: 14px;
+    width: 100%;
+    height: 100%;
+    
+    img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
 }
 
 *, *:before, *:after {
@@ -22,12 +29,40 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 
+ul.dropdown li { position: relative; }
+ul.dropdown,ul.dropdown-inside {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+    margin: 0px;
+ }
+ ul.dropdown-inside {
+    position: absolute;
+    left: -9999px;
+ }
+ ul.dropdown li.dropdown-top {
+    display: inline-block;
+    float: left;
+    margin: 0 1px 0 0;
+ }
+ ul.dropdown li.dropdown-top a {
+    display: block;
+ }
+ ul.dropdown a.dropdown-top { background: #efefef; }
+ ul.dropdown a.dropdown-top:hover { padding: 2px 10px 5px; }
+ ul.dropdown li.dropdown-top:hover .dropdown-inside {
+    display: block;
+    left: 0;
+ }
+
+
 .b-container {
     background: url("@{img-path}back_main.png") no-repeat;
+    background-size: 100%;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
-    background-size: 100%;
+    
     
     .clearfix;
 
@@ -43,8 +78,10 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 .b-wrapper {
-    width: @wrapper_size;
+    width: 100%;
+    max-width: @wrapper_size;
     margin: 0 auto;
+    height: auto;
 }
 
 
@@ -116,16 +153,13 @@ h1, h2, h3, h4, h5, h6, p {
 
 .register {
     background: url("@{img-path}ico_02.png") 0 1px no-repeat;
-    padding-left: 24px;
-    padding-right: 4px;
-    padding-top: 8px;
+    padding: 8px 0px 0px 20px;
     z-index: 99;
 }
 
 .login {
     background: url("@{img-path}ico_04.png") 0 1px no-repeat;
-    padding-left: 30px;
-    padding-top: 8px;
+    padding: 8px 0px 0px 26px;
     z-index: 99;
 }
 
@@ -133,8 +167,9 @@ h1, h2, h3, h4, h5, h6, p {
 // Main
 .b-main:extend(.b-wrapper) {
     .clearfix;
-    height: 1260px;
-    margin-top: 42px;
+    height: auto;
+    min-height: 1260px;
+    padding-top: 42px;
 
 
     h3 {
@@ -161,7 +196,7 @@ h1, h2, h3, h4, h5, h6, p {
         color: #d93655;
         font-family: 'Signika Light', sans-serif;
         font-size: 50px;
-        margin: 35px 0px 30px;
+        padding: 35px 0px 30px;
         text-align: center;
     }
 }
@@ -247,7 +282,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 .b-presents{ 
-    height: 680px;
+    height: 660px;
+    width: 530px;
+    overflow-y: auto;
 }
 
 .b-presents-item {
@@ -262,13 +299,34 @@ h1, h2, h3, h4, h5, h6, p {
             margin-top:14px;
         
         }
-    &:first-child, &:nth-child(4n+4) {
+    &:nth-child(3n+1) {
             margin-left: 0;
         }
     
-    img {
+    .presents_pic {
         width: 152px;
         height: 152px;
+    }
+    
+    .select-wish-by{
+        display: none;
+    }
+    
+    .add-to-list{
+        
+        font-family: 'Ubuntu Bold', sans-serif;
+        width: 154px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        text-decoration: none;
+        text-align: center;
+        display: none;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        background: #29b70d;
+
     }
     
     h3 {
@@ -286,11 +344,26 @@ h1, h2, h3, h4, h5, h6, p {
         margin-top: -8px;
     }
     
+    &:hover {
+        background: #fdfdfd;
+        box-shadow: 0 0 10px rgba(50,50,50,0.5);
+        height: auto;
+        
+        .add-to-list {
+            display: block;
+        }
+        
+        .select-wish-by{
+            display: inline-block;
+        }
+    }
     
 }
 
+
 .price-attention {
     text-align: center;
+    padding-top: 20px;
     
     p {
         font-family: 'Ubuntu Regular', sans-serif;
@@ -357,7 +430,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .main-wish {
     width: 100%;
-    height: 142px;
+    height: 120px;
 }
 
 .lights {
@@ -400,9 +473,34 @@ h1, h2, h3, h4, h5, h6, p {
     color: #a3acb3;
 }
 
+.wish-list{
+    width: 347px;
+    height: 595px;
+    overflow-y: scroll;    
+}
+
+
+.select-wish{
+    position: relative;
+}
 
 .select-wish-item {
+    position: relative;
 }
+
+.item-wrapper{
+    position: relative;
+    margin-top: 24px;
+}
+
+.select-wish-item:hover ~ .view-item {
+    display:block;
+}
+
+.view-item:hover {
+    display:block;
+}
+
 
 .sidebar-brackets2{
     position: absolute;
@@ -446,7 +544,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .by-pic {
     display: inline-block;
-    position: absolute;
+    vertical-align: middle;
 }
 
 .view-item {
@@ -455,12 +553,28 @@ h1, h2, h3, h4, h5, h6, p {
     background: rgba(219, 64, 94, 0.85);
     border-radius: 4px;
     margin: 24px 10px;
+    display: none;
+    position: absolute;
+    left: -4px;
+    bottom: -14px;
 }
 
+.view-item-space{
+    width: 160px;
+    height: 88px;
+    display: inline-block;
+    float: left;
+}
+
+.dropdown-space{
+    width: 160px;
+    height: 88px;
+    display: inline-block;
+}
 
 .btn-view-item{
     font-family: 'Ubuntu Medium', sans-serif;
-    width: 128px;
+    width: 146px;
     height: 42px;
     line-height: 42px;
     font-size: 16px;
@@ -468,10 +582,11 @@ h1, h2, h3, h4, h5, h6, p {
     text-align: center;
     display: inline-block;
     color: #db405e;
-    border-radius: 2px;
+    border-radius: 3px;
+    border: 1px solid #dc4b66;
     background: #f7f7f7;
     position: relative;
-    margin: 24px 0px 24px 30px;
+    margin: 24px 0px 24px 15px;
     
     
     img {
@@ -481,7 +596,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .btn-more-options{
     font-family: 'Ubuntu Medium', sans-serif;
-    width: 128px;
+    width: 146px;
     height: 42px;
     line-height: 42px;
     font-size: 16px;
@@ -489,7 +604,8 @@ h1, h2, h3, h4, h5, h6, p {
     text-align: center;
     display: inline-block;
     color: #db405e;
-    border-radius: 2px;
+    border-radius: 3px;
+    border: 1px solid #dc4b66;
     background: #f7f7f7;
     position: relative;
     margin: 24px 0px 0px 10px;
@@ -497,6 +613,32 @@ h1, h2, h3, h4, h5, h6, p {
     img {
             vertical-align: middle;
         }
+}
+
+.btn-dropdown {
+    font-family: 'Ubuntu Medium', sans-serif;
+    width: 146px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    color: #db405e;
+    border-radius: 2px;
+    border: 1px solid #dc4b66;
+    background: #f7f7f7;
+    position: relative;
+    left:10px;
+    z-index: 999;
+    
+    img {
+            vertical-align: middle;
+        }
+    
+    .icon_x{
+            margin: 0px 2px 0px -13px;
+    }
 }
 
 .sidebar-brackets3{
@@ -581,12 +723,73 @@ h1, h2, h3, h4, h5, h6, p {
     
 }
 
+ul.dropdown li { position: relative; }
+ul.dropdown,
+ul.dropdown-inside {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+    margin: 0px;
+ }
+ ul.dropdown-inside {
+    position: absolute;
+    left: -9999px;
+ }
+ ul.dropdown li.dropdown-top {
+    display: inline-block;
+    float: left;
+    margin: 0 1px 0 0;
+ }
+ ul.dropdown li.dropdown-top a {
+    display: block;
+ }
+ ul.dropdown a.dropdown-top { background: #efefef; }
+ ul.dropdown a.dropdown-top:hover { padding: 2px 10px 5px; }
+ ul.dropdown li.dropdown-top:hover .dropdown-inside {
+    display: block;
+    left: 0;
+ }
 
 
+// Responsive
+
+@media screen and (min-width:200px) and (max-width:1024px) {
+    
+    .b-nav a {
+        margin-left: 10px;
+    }
+    
+    .b-main-content {
+        float: none;
+        margin: 0 auto;
+    }
+    
+    .b-main-sidebar {
+    float: none;
+    margin: 42px auto;    
+    }    
+}
 
 
+@media screen and (min-width:100px) and (max-width:768px) {
+    
+    .b-logo {
+        width: 30%;
+    }
+}
 
 
+@media screen and (min-width:100px) and (max-width:488px) {
+    
+    .b-header{
+        line-height: 100%;
+    }
+    
+    .b-login {
+    display: none;
+}
+
+}
 
 
 
